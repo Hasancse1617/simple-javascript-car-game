@@ -13,7 +13,6 @@ document.addEventListener("keydown", keyDown);
 function keyDown(e){
     e.preventDefault();
     keys[e.key] = true;
-    console.log(keys)
 }
 function keyUp(e){
     e.preventDefault();
@@ -61,7 +60,7 @@ function gamePlay(){
     // console.log(road);
     if(player.start){
         moveLines();
-        moveEnemies();
+        moveEnemies(car);
         //Car move with Arrow key
         if(keys.ArrowUp && player.y > (road.top + 70)){ player.y -= player.speed};
         if(keys.ArrowDown && player.y < (road.bottom - 70)){ player.y += player.speed}
@@ -87,9 +86,13 @@ function moveLines(){
         item.style.top = item.y + "px";
     });
 }
-function moveEnemies(){
+function moveEnemies(car){
     let enemies = document.querySelectorAll(".enemy");
     enemies.forEach(function(item){
+        if(isCollide(car, item)){
+            // console.log(isCollide(car,item));
+            endGame();
+        }
         if(item.y >= 750){
             item.y = -300;
             item.style.left = Math.floor(Math.random() * 350) + "px";
@@ -97,4 +100,16 @@ function moveEnemies(){
         item.y += player.speed;
         item.style.top = item.y + "px";
     });
+}
+function isCollide(a, b){
+    aRect = a.getBoundingClientRect();
+    bRect = b.getBoundingClientRect();
+    // console.log(aRect, bRect);
+    return (aRect.x < bRect.x + bRect.width && aRect.x + aRect.width > bRect.x && aRect.y < bRect.y + bRect.height && aRect.height + aRect.y > bRect.y);
+}
+
+function endGame(){
+    player.start = false;
+    startScreen.classList.remove("hide");
+    startScreen.innerHTML = "Game Over </br> Your final score is " + player.score + "</br>Press here to restart the Game";
 }
