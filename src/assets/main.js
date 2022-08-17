@@ -46,7 +46,7 @@ function start(){
     //Create Enemy Car
     for (let i = 0; i < 3; i++) {
         let enemyCar = document.createElement("div");
-        enemyCar.setAttribute("class", "enemy");
+        enemyCar.setAttribute("class", `enemy enemy-${i+1}`);
         enemyCar.y = ((i+1)*350)* -1;
         // console.dir(enemyCar);
         enemyCar.style.top = enemyCar.y + "px";

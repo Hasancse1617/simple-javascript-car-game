@@ -5,15 +5,40 @@
 .hide{
     display: none;
 }
-.car, .enemy{
+.enemy{
     width: 50px;
-    height: 70px;
-    background: red;
+    height: 115px;
+    /* background: red; */
     position: absolute;
     left: 150px;
     top: 120px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.car{top: 400px;}
+.enemy-1{
+    background-image: url("./images//enemy1.png");
+}
+.enemy-2{
+    background-image: url("./images//enemy2.png");
+}
+.enemy-3{
+    background-image: url("./images//enemy3.png");
+}
+.car{
+    width: 50px;
+    height: 115px;
+    /* background: red; */
+    position: absolute;
+    left: 150px;
+    top: 120px;
+    top: 400px;
+    background-image: url("./images/car.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .gameArea{
     width: 400px;
     height: 100vh;
